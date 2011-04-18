@@ -23,12 +23,12 @@ class PGWindow:
             # actualizamos el tiempo
             tick_time = self.clock.tick(self.fps) # milliseconds since last frame
 
-            # funcion de actualizacion
-            self.frame_updater(self.screen, self.clock)
+            # gestion de eventos
+            lst_evt=pygame.event.get()
+            self.mainloop=self.event_manager(lst_evt)
 
-            # funcion de gestion de eventos
-            for event in pygame.event.get():
-                self.mainloop=self.event_manager(event)
+            # actualizacion del frame
+            self.frame_updater(self.screen, self.clock)
 
             # update del display
             pygame.display.update()

@@ -5,7 +5,7 @@ import pgwnd
 x=25
 y=0
 color=(32,32,32)
-back_color=(255,255,255)
+back_color=(25,25,25)
 
 #
 #   Actualizacion del frame
@@ -24,16 +24,14 @@ def update_frame(screen,clock):
 #
 #   Gestion de eventos
 #
-def event_manager(event):
-    if event.type == pygame.QUIT:
-        return False
-
-    elif event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_ESCAPE:
-            return False
+def event_manager(lst_event):
+    ret=True
+    
+    for event in lst_event:
+        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+            ret=False
             
-    else:
-        return True
+    return ret
 
 
 #--------------------------------------------------------------
