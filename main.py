@@ -11,7 +11,7 @@ back_color=(25,25,25)
 #   Actualizacion del frame
 #
 def update_frame(screen,clock):
-    pygame.display.set_caption("press Esc to quit. FPS: %.2f" % (clock.get_fps()))
+#    pygame.display.set_caption("press Esc to quit. FPS: %.2f" % (clock.get_fps()))
 
     fontsize = random.randint(35, 150)
     myFont = pygame.font.SysFont("None", fontsize)
@@ -38,7 +38,9 @@ def event_manager(lst_event):
 #       MAIN
 #--------------------------------------------------------------
 if __name__=='__main__':
-    wnd=pgwnd.PGWindow(640,480,update_frame,event_manager)
+    print 'Using pygame version:', pygame.ver
+
+    wnd=pgwnd.PGWindow(640,480, 'Test', update_frame,event_manager)
     wnd.loop()
 
 

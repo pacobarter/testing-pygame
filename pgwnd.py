@@ -1,12 +1,14 @@
 import pygame
+import pygame.locals as locals
 import random
 
 class PGWindow:
 
-    def __init__(self,w,h,frame_updater,event_manager):
+    def __init__(self,w,h,caption,frame_updater,event_manager):
         pygame.init() 
 
-        self.screen = pygame.display.set_mode([w,h])
+        self.screen = pygame.display.set_mode((w,h), locals.DOUBLEBUF)
+        pygame.display.set_caption(caption)
 
         self.mainloop = True
         
