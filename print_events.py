@@ -4,9 +4,27 @@
 import pygame
 import pygame.locals as locals
 import sys
+import threading
+import time
 
+class LinePrinter(threading.Thread):
+    def __init__(self,msg):
+        super(LinePrinter,self).__init__()
+        
+        self.msg=msg
+        self.idx=0
 
+    def run(self):
+        while self.idx<len(self.msg)-1:
+            self.idx+=1
+            time.sleep(0.01)
+            
+    def __str__(self):
+        return self.msg[:self.idx]
 
+#
+#   MAIN
+#
 if __name__=='__main__':
 
     pygame.init()
@@ -21,19 +39,24 @@ if __name__=='__main__':
 
     while True:
     
-        event=pygame.event.wait()
-        
-        events_txt.append(str(event))
-        events_txt=events_txt[-screen_size[1]/font_height:]
+        event_lst=pygame.event.get()
 
-        if event.type==locals.QUIT:
-            sys.exit()
+        for evt in event_lst:
+            if evt.type==locals.QUIT:
+                sys.exit()
+
+    #        events_txt.append(str(event))
+            lp=LinePrinter(str(evt))
+            lp.start()
+        
+            events_txt.append(lp)
+            events_txt=events_txt[-screen_size[1]/font_height:]
 
         screen.fill((0,0,0))
-        
+    
         y=screen_size[1]-font_height
         for txt in reversed(events_txt):
-            screen.blit(font.render(txt,True,(0,250,0)),(0,y))
+            screen.blit(font.render(str(txt),True,(0,210,0)),(0,y))
             y-=font_height
             
         pygame.display.update()
