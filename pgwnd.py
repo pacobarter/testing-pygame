@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+#
+
 import pygame
 import pygame.locals as locals
 import random
