@@ -29,34 +29,40 @@ if __name__=='__main__':
 
     pygame.init()
 
-    screen_size=(800,600)
-    screen=pygame.display.set_mode(screen_size,0,32)
+    try:
+        screen_size=(800,600)
+        screen=pygame.display.set_mode(screen_size,0,32)
 
-    font=pygame.font.SysFont('Courier New', 12)
-    font_height=font.get_linesize()
+        font=pygame.font.SysFont('Courier New', 12)
+        font_height=font.get_linesize()
 
-    events_txt=[]
+        events_txt=[]
 
-    while True:
-    
-        event_lst=pygame.event.get()
-
-        for evt in event_lst:
-            if evt.type==locals.QUIT:
-                sys.exit()
-
-    #        events_txt.append(str(event))
-            lp=LinePrinter(str(evt))
-            lp.start()
+        while True:
         
-            events_txt.append(lp)
-            events_txt=events_txt[-screen_size[1]/font_height:]
+            event_lst=pygame.event.get()
 
-        screen.fill((0,0,0))
-    
-        y=screen_size[1]-font_height
-        for txt in reversed(events_txt):
-            screen.blit(font.render(str(txt),True,(0,210,0)),(0,y))
-            y-=font_height
+            for evt in event_lst:
+                if evt.type==locals.QUIT:
+                    sys.exit()
+
+        #        events_txt.append(str(event))
+                lp=LinePrinter(str(evt))
+                lp.start()
             
-        pygame.display.update()
+                events_txt.append(lp)
+                events_txt=events_txt[-screen_size[1]/font_height:]
+
+            screen.fill((0,0,0))
+        
+            y=screen_size[1]-font_height
+            for txt in reversed(events_txt):
+                screen.blit(font.render(str(txt),True,(0,210,0)),(0,y))
+                y-=font_height
+                
+            pygame.display.update()
+
+    except:
+        pygame.quit()
+
+
