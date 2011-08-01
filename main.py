@@ -43,7 +43,7 @@ def event_manager(lst_event):
 if __name__=='__main__':
     print 'Using pygame version:', pygame.ver
 
-    wnd=pgwnd.PGWindow(640,480, 'Test', update_frame,event_manager)
+    wnd=pgwnd.PGWindow(640,480, 'Test', None, update_frame, event_manager, 30)
     wnd.loop()
 
 
