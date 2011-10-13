@@ -73,8 +73,8 @@ class Agent:
         self.pto=Point(x,y)
         self.angle=angle
         
-        self.d=15
-        self.rad=3
+        self.d=15.0
+        self.rad=3.0
         self.color=(0,50,200)
     
         self.move=False
